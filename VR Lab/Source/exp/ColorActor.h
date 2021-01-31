@@ -6,26 +6,32 @@
 #include "GameFramework/Actor.h"
 #include "ColorActor.generated.h"
 
+UENUM(Blueprintable, Meta = (Bitflags))
+enum class EColorBitMask:uint8
+{
+	RED,
+	GREEN,
+	BLUE
+};
+
 UCLASS()
 class EXP_API AColorActor : public AActor
 {
 	GENERATED_BODY()
+
+	
 	
 public:	
+
 	// Sets default values for this actor's properties
 	AColorActor();
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* StaticMeshComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (Bitmask, BitmaskEnum = "EColorBitMask"))
+	uint8  color;
 	UPROPERTY(EditAnywhere)
-		bool isRed;
-	UPROPERTY(EditAnywhere)
-		bool isBlue;
-	UPROPERTY(EditAnywhere)
-		bool isGreen;
-	UPROPERTY(EditAnywhere)
-		float Alpha;
-	//UPROPERTY(EditAnywhere)
-	FLinearColor Color;
+	float Alpha =  1.0f;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

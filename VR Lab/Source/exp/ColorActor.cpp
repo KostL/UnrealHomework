@@ -23,13 +23,14 @@ void AColorActor::BeginPlay()
 void AColorActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	Color.R = isRed ? 1.0f : 0.0f;
-	Color.G = isGreen ? 1.0f : 0.0f;
-	Color.B = isBlue ? 1.0f : 0.0f;
-	Color.A = Alpha;
+	FLinearColor fcolor;
+	fcolor.R = (((color) & (1 << static_cast<uint32>(EColorBitMask::RED))) > 0) ? 1.0f : 0.0f;
+	fcolor.G = (((color) & (1 << static_cast<uint32>(EColorBitMask::GREEN))) > 0) ? 1.0f : 0.0f;
+	fcolor.B = (((color) & (1 << static_cast<uint32>(EColorBitMask::BLUE))) > 0) ? 1.0f : 0.0f;
+	fcolor.A = Alpha;
 	UMaterialInstanceDynamic* material = StaticMeshComponent->CreateAndSetMaterialInstanceDynamic(0);
 
-	material->SetVectorParameterValue(FName("Color"), Color);
+	material->SetVectorParameterValue(FName("Color"), fcolor);
 	StaticMeshComponent->SetMaterial(1, material);
 }
 
