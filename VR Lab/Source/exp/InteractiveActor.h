@@ -37,4 +37,10 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "InteractEvents")
 		void OnHoverExit();
 	virtual void OnHoverExit_Implementation();
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "InteractEvents")
+		void OnGrab(USceneComponent* SceneObjectd);
+	virtual void OnGrab_Implementation(USceneComponent* SceneObject);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "InteractEvents")
+		void OnRelease();
+	virtual void OnRelease_Implementation();
 };

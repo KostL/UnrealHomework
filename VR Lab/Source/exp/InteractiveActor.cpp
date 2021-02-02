@@ -27,6 +27,12 @@ void AInteractiveActor::OnHoverEnter_Implementation() {
 void AInteractiveActor::OnHoverExit_Implementation() {
 
 }
+void AInteractiveActor::OnGrab_Implementation(USceneComponent* SceneObject) {
+
+}
+void AInteractiveActor::OnRelease_Implementation() {
+
+}
 // Called every frame
 void AInteractiveActor::Tick(float DeltaTime)
 {
