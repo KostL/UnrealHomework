@@ -16,6 +16,8 @@ public:
 	// Sets default values for this actor's properties
 	AGrabInteractActor();
 	USceneComponent* GrabComponent;
+	UPROPERTY(BlueprintReadWrite)
+	bool isGrabed;
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,5 +28,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void OnGrab_Implementation(USceneComponent* SceneObject) override;
 	virtual void OnRelease_Implementation() override;
+
 
 };

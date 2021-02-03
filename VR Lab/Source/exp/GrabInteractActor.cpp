@@ -9,6 +9,7 @@ AGrabInteractActor::AGrabInteractActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	StaticMeshComponent->SetSimulatePhysics(true);
+	isGrabed = false;
 }
 
 // Called when the game starts or when spawned
@@ -29,6 +30,7 @@ void AGrabInteractActor::OnGrab_Implementation(USceneComponent* SceneObject)
 	GrabComponent = SceneObject;
 	auto strictRules = FAttachmentTransformRules(EAttachmentRule::KeepWorld, true);
 	AttachToComponent(SceneObject, strictRules);
+	isGrabed = true;
 }
 
 void AGrabInteractActor::OnRelease_Implementation()
@@ -41,6 +43,8 @@ void AGrabInteractActor::OnRelease_Implementation()
 		auto rules = FDetachmentTransformRules(EDetachmentRule::KeepWorld, true);
 		DetachFromActor(rules);
 		StaticMeshComponent->AddImpulseAtLocation(forward * velocity, FVector(0.0f, 0.0f, 0.0f), NAME_None);
+		isGrabed = false;
 	}
+
 }
 
